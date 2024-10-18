@@ -2,7 +2,7 @@
 
 ## Diseño de Software para Cómputo científico
 
-## Facultad de Matemática, Astronomía y Física, Universidad Nacional de Córdoba (FaMAF–UNC) Bvd. Medina Allende s/n, Ciudad Universitaria, X5000HUA, Córdoba, Argentina
+### Facultad de Matemática, Astronomía y Física, Universidad Nacional de Córdoba (FaMAF–UNC) Bvd. Medina Allende s/n, Ciudad Universitaria, X5000HUA, Córdoba, Argentina
 
 **Docente:**
 
