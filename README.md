@@ -12,8 +12,6 @@ Dr. Juan Bautista Cabral
 
 * Carolina Salinas Domjan
 
-* Augusto Romero
-
 * Horacio José Brizuela
 
 ## Motivación
