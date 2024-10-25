@@ -1,0 +1,35 @@
+black == 24.10.0
+flake8 == 7.1.1
+flake8-black == 0.3.6
+flake8-builtins == 2.5.0
+flake8-import-order == 0.18.2
+pep8-naming == 0.14.1
+ipdb == 0.13.13
+ipython == 8.28.0
+cachetools == 5.5.0
+coverage == 7.6.3
+decorator == 5.1.1
+virtualenv == 20.27.0
+
+
+# Traineing module dependencies
+torch == 2.4.1
+time
+numpy
+torchvision
+scikit-learn
+pandas == 2.2.2
+
+
+# Image analysis module dependencies
+torch == 2.4.1
+numpy
+opencv-python == 4.10.0.84
+pandas == 2.2.2
+torchvision
+
+
+# Testing
+pytest == 8.3.3
+pytest-cov == 5.0.0
+tox == 4.22.0
