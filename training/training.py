@@ -1,55 +1,44 @@
-"""This module contain the training model for classification of 
+"""This module contain the training model for classification of
 bacteria in images taken with an optical microscope.
-Script adapted from 
-    @inproceedings{gallardo2020bacterialident,
-	title={Deep Learning for Fast Identification of Bacterial Strains in Resource Constrained Devices},
-	author={Rafael Gallardo-García, Sofía Jarquín-Rodríguez, Beatriz Beltrán-Martínez and Rodolfo Martínez},
-	booktitle={Aplicaciones Científicas y Tecnológicas de las Ciencias Computacionales},
-	pages={67--78},
-	year={2020},
-	organization={BUAP} }
+Script adapted from
+@inproceedings{gallardo2020bacterialident,
+title={Deep Learning for Fast Identification of Bacterial Strains in Resource
+Constrained Devices},
+author={Rafael Gallardo-García, Sofía Jarquín-Rodríguez, Beatriz
+Beltrán-Martínez and Rodolfo Martínez},
+booktitle={Aplicaciones Científicas y Tecnológicas de las Ciencias
+Computacionales},
+pages={67--78},
+year={2020},
+organization={BUAP} }
 With part of DIBaS dataset:
 @article{zielinski2017,
-	title={Deep learning approach to bacterial colony classification},
-	author={Zieli{\'n}ski, Bartosz and Plichta, Anna and Misztal, Krzysztof and Spurek, Przemys{\l}aw and Brzychczy-W{\l}och, Monika and Ocho{\'n}ska, Dorota},
-	journal={PloS one},
-	volume={12},
-	number={9},
-	pages={e0184554},
-	year={2017},
-	publisher={Public Library of Science San Francisco, CA USA} }
+title={Deep learning approach to bacterial colony classification},
+author={Zieli'nski, Bartosz and Plichta, Anna and Misztal, Krzysztof and
+Spurek, Przemyslaw and Brzychczy-Wloch, Monika and Ocho'nska, Dorota},
+journal={PloS one},
+volume={12},
+number={9},
+pages={e0184554},
+year={2017},
+publisher={Public Library of Science San Francisco, CA USA} }
 """
 
 # Imports here
-import os
 import torch
 import time
 import numpy as np
-import pandas as pd
-import torch.nn.functional as F
 
 from PIL import Image
-from sklearn.metrics import (
-    f1_score,
-    precision_score,
-    recall_score,
-    classification_report,
-)
 from sklearn.model_selection import KFold
 from torch import nn
 from torch import optim
 from torch.utils.data import SubsetRandomSampler
 from torchvision import datasets, transforms, models
-from pytorch_model_summary import summary
 
-# Archs not in Pytorch
-from efficientnet_pytorch import EfficientNet
-
-# External functions
-from utils import *
 
 # Directory containing the images for training:
-data_dir = "/content/drive/MyDrive/data"
+data_dir = "/path/to/training/data"
 
 # Dataset details
 dataset_version = "original"  # original or augmented
@@ -61,7 +50,7 @@ val_test_batch_size = 33
 feature_extract = False
 pretrained = True
 h_epochs = 10  # Number of training epochs
-kfolds = 15  # 10
+kfolds = 10  # 10
 
 # Define transforms for input data
 training_transforms = transforms.Compose(
@@ -80,8 +69,10 @@ splits = KFold(n_splits=kfolds, shuffle=True, random_state=42)
 
 train_labels = {value: key for (key, value) in total_set.class_to_idx.items()}
 
+
 print(len(train_labels))
 print(train_labels)
+
 
 # Freeze pretrained model parameters to avoid backpropogating through them
 def set_parameter_requires_grad(model, feature_extracting):
@@ -124,13 +115,13 @@ def create_optimizer(model):
     if feature_extract:
         params_to_update = []
         for param in model.parameters():
-            if param.requires_grad == True:
+            if param.requires_grad is True:
                 params_to_update.append(param)
 
     else:
         n_params = 0
         for param in model.parameters():
-            if param.requires_grad == True:
+            if param.requires_grad is True:
                 n_params += 1
 
     # Loss function and gradient descent

@@ -2,7 +2,6 @@ from sklearn.metrics import (
     f1_score,
     precision_score,
     recall_score,
-    classification_report,
 )
 import pandas as pd
 import torch
@@ -34,7 +33,8 @@ def get_classes(probabilities, idx_to_class):
     top_probabilities = (
         top_probabilities.detach().type(torch.FloatTensor).numpy().tolist()[0]
     )
-    top_indices = top_indices.detach().type(torch.FloatTensor).numpy().tolist()[0]
+    top_indices = (
+        top_indices.detach().type(torch.FloatTensor).numpy().tolist()[0])
 
     # Convert topk_indices to the actual class labels using class_to_idx
     # Invert the dictionary so you get a mapping from index to class.
@@ -57,8 +57,6 @@ def test_accuracy(model, test_loader):
 
     with torch.no_grad():
 
-        accuracy = 0
-
         for images, labels in iter(test_loader):
 
             if torch.cuda.is_available():
@@ -70,12 +68,15 @@ def test_accuracy(model, test_loader):
             probabilities = torch.exp(output)
 
             # Getting indices to their corresponding classes
-            idx_to_class = {value: key for key, value in model.class_to_idx.items()}
+            idx_to_class = (
+                {value: key for key, value in model.class_to_idx.items()})
 
             probs, classes = get_classes(probabilities, idx_to_class)
 
             # List with results to form a confusion matrix
-            hr_label = labels.data.detach().type(torch.FloatTensor).numpy().tolist()[0]
+            hr_label = (
+                labels.data.detach().type(torch.FloatTensor
+                                          ).numpy().tolist()[0])
 
             hr_label = idx_to_class[hr_label]
 
@@ -91,10 +92,6 @@ def results_pandas(model, test_loader):
 
     # Getting results
     results = test_accuracy(model, test_loader)
-
-    gt = []
-    top1 = []
-    certainty = []
 
     results_dict = {
         "Ground truth": [],
