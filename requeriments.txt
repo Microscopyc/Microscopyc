@@ -12,7 +12,7 @@ decorator == 5.1.1
 virtualenv == 20.27.0
 
 
-# Traineing module dependencies
+# Training module dependencies
 torch == 2.4.1
 time
 numpy
