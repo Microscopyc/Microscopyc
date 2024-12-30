@@ -15,7 +15,7 @@ Dr. Juan Bautista Cabral
 * Horacio José Brizuela
 
 ## Motivación
-Microscopyc aborda la necesidad de realizar la lectura y el análisis fiable, preciso, reproducible y veloz de imágenes microscópicas en Python. 
+Microscopyc aborda la necesidad de realizar la lectura y el análisis fiable, preciso, reproducible y veloz de imágenes microscópicas con Python. 
 El proyecto busca proporcionar herramientas para analizar y clasificar estructuras celulares dentro de imágenes microscópicas y realizar la comparación 
 morfológica entre distintas muestras para células con un mismo tipo de clasificación, tales como tamaño, forma, agrupación, distribución. 
 Microscopyc se enfoca en ofrecer métodos robustos para la identificación, clasificación y comparación de células y/o microorganismos, facilitando y automatizando
